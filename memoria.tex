@@ -1,0 +1,107 @@
+\documentclass[
+	11pt,			% Tamaño de fuente (11pt)
+	letterpaper,	% Tamaño del papel (carta)
+    twoside			% Impresión por ambos lados
+]{thesis_utfsm}
+
+\usepackage{thesis_utfsm}   % Archivo de estilos 
+
+\input{config}              % Configuración (Título, autor, etc.)
+                            
+                            
+
+\makeatother                
+
+
+% Generadores de texto 
+\usepackage{blindtext}      % automated text generation
+\usepackage{lipsum}         % automated text generation
+\usepackage{verbatim} % comentarios
+
+%---------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\pagestyle{plain}           % Headers & Footers (Roman numbers)
+
+%---------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Portada
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\insertFile{portada}        % Insertar archivo 'sections/portada.tex'.
+
+%---------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Preámbulo (Front Matter)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter                % Important! (Do not delete or move!)
+
+\begin{comment}
+ \dedicatoria{%
+    \emph{\huge Dedicatoria \dots}
+
+    \vspace*{2cm}[Puede ocupar este espacio para escribir una 
+    dedicatoria (opcional). Revise el archivo maestro
+    \inlinecode{memoria.tex}]
+}%
+
+
+\section*{(AGRADECIMIENTOS) [Título es opcional] }
+\insertFile[empty]{agradecimientos} % Insertar 'sections/agradecimientos.tex'.
+\end{comment}
+
+\section*{RESUMEN}
+\insertFile[plain]{Resumen}     % Insertar 'sections/resumen.tex'.
+
+
+\section*{ABSTRACT}
+\insertFile[plain]{Abstract}    % Insertar 'sections/abstract.tex'.
+
+
+%%% TABLA DE CONTENIDOS / FIGURAS / CUADROS
+\begin{spacing}{1}      % Single space for TOC, LOF and LOT
+    \tableofcontents\listoftables\listoffigures
+\end{spacing}
+
+
+
+%---------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Cuerpo Principal (Main Matter)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter             
+
+\pagestyle{fancy}       % Headers & Footers (Arabic numbers)
+
+% Incluir Capítulos
+\input{includes/Glosario}
+\input{includes/Introduccion}
+\input{includes/DefinicionDelProblema}
+\input{includes/EstadoDelArte}
+\input{includes/DiseñoDeLaSolucion}
+\input{includes/Experimentos}
+\input{includes/Resultados}
+\input{includes/Conclusiones}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Bibliografía
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{spacing}{1}      % Single space for Bibliography
+%    \bibliographystyle{thesis_utfsm}    % Alternative 'apalike'
+%    \bibliography{bibliography}         % Archivo 'bibliography.bib'
+% \end{spacing}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Anexos (Opcional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \appendix
+% \input{includes/anexo}
+
+
+
+\end{document}

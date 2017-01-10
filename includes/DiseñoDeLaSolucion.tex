@@ -1,0 +1,117 @@
+%!TEX root = ../memoria.tex
+
+\chapter{Diseño de la solución}
+
+\section{Metodología}
+Para desarrollar la plataforma y cumplir con los objetivos planteados en \ref{sec:Objetivos}, se separó el proyecto utilizando un plan de trabajo que puede resumirse en las siguientes etapas:
+\begin{itemize}
+\item
+\item Diseñar e implementará el algoritmo de reconocimiento acústico, testeando esta etapa con un archivo de audio mp3 como entrada, para comprobar que la plataforma detecta las canciones del repertorio de prueba.
+\item Posteriormente se ampliará el alcance del algoritmo para que sea capaz de reconocer las canciones de manera simultánea en diversas radioemisoras online.
+\end{itemize}
+
+-pseudo codigo para una radio, definiendo funciones principales, y uso de Threads
+-Cambios que se realizarán para implementar fiscalizacion en paralelo
+
+\section{Selección de herramientas de desarrollo}
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{lllll}
+Elemento             & Dejavu              & bmoquist/ Shazam & bfirsh/ python-echoprint & Music Identification based on Hashed Chroma Features \\
+Lenguaje             & Python              & Python           & Python                   & c++                                                  \\
+Base de datos        & Local               &                  & Lista en el programa     &                                                      \\
+Entrada de datos     & Archivo y micrófono &                  & Lista                    & chroma files of the songs                            \\
+Última actualización & Abr-15              & Ene-14           & Nov-12                   & Jul-13                                               \\
+Sistema              & Unix-Fedora         &                  &                          &                                                     
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Descripción de Dejavu Project}
+Como se ha señalado en secciones anteriores, el proyecto Dejavu es un sistema open-source desarrollado en Python, que basa su implementación en fingerprints. Sin embargo, antes de abordar su funcionamiento y especificaciones, en necesario detallar la forma en que la música o señales de audio en nuestro entorno, son transformadas para ser almacenadas en un sistema computacional.
+
+\bigskip
+
+El primer concepto a interiorizar es la aplicación de la Transformada Rápida de Fourier (FFT de sus siglas en inglés: Fast Fourier transform) para el procesamiento digital de señales. Esto debido a que la música es codificada digitalmente como una larga lista numérica. En el caso de un archivo .wav la cantidad de números por canal es del orden de 44100 por segundo, donde los canales corresponden a la secuencia de muestras que un parlante de música puede tocar. Los más habituales son estéreo (2 canales) o mono (un canal). Por tanto, si se contara con una canción promedio de 3 minutos 30 segundos, la cantidad de muestras alcanzaría los:
+
+\begin{equation*}
+210 [s]* 44100[muestras/s]*2[canales] = 18.522.000
+\end{equation*}
+
+Por su parte, el valor 44100 proviene del teorema de muestreo de Nyquist-Shannon, pero debido al alcance de esta memoria, abordar minuciosamente su descripción no es requerido para comprender el funcionamiento de Dejavu. Basta con señalar que este teorema matemático establece que existe un límite en la frecuencia máxima que es posible capturar con precisión durante la grabación de las señales de audio, y esta frecuencia indica que tan rápido muestreamos la señal, además de establecer que para asegurarse de tomar las muestras necesarias, es requerido aumentar al doble la frecuencia máxima. 
+
+\bigskip
+
+Considerando que el ser humano es incapaz de oír frecuencias por sobre los 20.000 [Hz], la norma establece que un límite de frecuencia máximo es 22.500 [Hz], por lo que utilizando el teorema de Nyquist-Shannon, es posible obtener el valor de las 44.100 muestras por segundo:
+
+\begin{equation*}
+Muestras por segundo = Frecuencia alta * 2 = 22500*2 = 44100.
+\end{equation*}
+
+Cabe destacar que en el caso de los archivos .mp3, este formato comprime estos números con la finalidad de ahorrar espacio en el disco.
+
+\bigskip
+
+Una vez se aplica la transforma rápida de Fourier a este conjunto de muestras, es posible generar uno de los elementos más importantes del tratamiento del audio, el espectrograma, una representación visual en dos dimensiones de la amplitud de la señal en función del tiempo y la frecuencia. Como es posible observar de la figura XX, al aplicar la FFT al conjunto de muestras, y unirlas en una sola matriz, se desprende la amplitud de la señal a una frecuencia particular, donde el color XXXX corresponde a amplitudes mayores, en oposición al verde, de amplitudes bajas. Vale decir, si se grabara la señal en un solo tono, el espectrograma creado se apreciaría como una línea recta horizontal en la frecuencia de dicho tono.
+
+\bigskip
+[]
+Figura x: Espectrograma de los primero xx segundos de la canción xx donde la variable dependiente es la frecuencia, en función del tiempo.
+\bigskip
+
+Ahora, si bien cabe esperar que este espectrograma sea único para cada canción o audio, se debe tener en consideración que cualquier tipo de ruido que afecte las muestras de grabaciones en el ambiente donde se reproduce la música, provocará que la representación matricial por espectrogramas varíe una infinidad de veces, dependiendo del tipo de ruidos externos que se filtren en la grabación. Por tanto, para los algoritmos de reconocimiento acústico, es necesario encontrar la forma de identificar huellas únicas para cada canción, independiente del ruido que exista en los archivos de audio.
+
+\bigskip
+
+Una forma de hacerlo, es centrándose en las amplitudes más grandes de una canción, pues debido a sus altos valores, no son afectados por posibles ruidos que pueda contener el archivo de entrada. De esta forma, se definen peaks de audio, correspondientes al par de variables tiempo y frecuencia, que aluden a alguna amplitud cuyo valor es el más alto dentro de un vecindario de muestras, de tal forma que es posible discretizar la señal de audio en valores enteros, a partir de las amplitudes más grandes.
+
+\bigskip
+
+Para lograr lo anterior, Dejavu utiliza las herramientas de la biblioteca scipy para tratar el audio de entrada e identificar los máximos locales, tal como lo señala la imagen XXXX. De este modo, se extrae toda aquella información del espectrograma que represente amplitudes altas, por lo que, para cierto margen, el ruido de un archivo ya no influye en el algoritmo.
+
+
+\bigskip
+[XXXXX: imagne de peaks de auido]
+\bigskip
+
+
+No obstante, es posible que más de algún par discreto de [tiempo, frecuencia] de alta amplitud en una canción, coincida con pares provenientes de otras canciones, por lo que es necesario volver a tratar la información obtenida. En base a esto, surge otro concepto relevante del procesamiento de música, los fingerprints, o huella digital acústica. Ésta se define como el resumen generado a partir de una señal de audio, que contempla la utilización de una función hash, para crear, a partir de una entrada, una salida alfanumérica que representa la información que le fue dada inicialmente. Por lo tanto, los datos de entrada generan una cadena que solo pueden crearse con esos mismos datos.
+
+\bigskip
+
+Específicamente, la información resumida que contempla un fingerprint corresponde una combinación entre el valor de la frecuencia en un peak del audio, y la diferencia en tiempo, entre algún peak aledaño. Específicamente, Dejavu …[revisar código fuente]. De tal forma que al combinar estos peaks en función del tiempo que los separa, es posible identificar elementos en el archivo que son únicos para cada canción.
+
+\bigskip
+[img peak con rayitas]
+\bigskip
+
+Una vez comprendido los conceptos básicos que permiten caracterizar a cada una de las canciones, creando perfiles únicos para su identificación, es posible abordar el funcionamiento de Dejavu. En primer lugar, se debe contar con un sistema que permita almacenar los diversos fingerprints en una base de datos, puesto que ésta será utilizada para comparar sus registros, con el extracto de canción que se desea reconocer.
+
+\bigskip
+
+La base de datos utilizada con Dejavu es MySQL, cuyo esquema contiene solo dos tablas, fingerprints y songs, con una clave foránea "song\_id" que las relaciona. (AUTOINCREMENTAL? Revisar code)
+
+
+\bigskip
+[Contenido tabla finger][Contenido tabla songs]
+\bigskip
+
+
+Teniendo en consideración que se crean muchos fingerprints por canción, el campo hash es un binary(10) con tal de reducir el espacio en la base de datos.
+
+\subsubsection{Análisis de funcionalidad}
+
+
+\lipsum[2-4]
+
+\section{Descripción del algoritmo}
+
+-Estructuras usadas
+-Entrada/salida
+\lipsum[2-4]
+
+

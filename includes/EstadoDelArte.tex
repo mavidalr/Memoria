@@ -1,0 +1,74 @@
+%!TEX root = ../memoria.tex
+
+\chapter{Estado del arte}
+Dado que la principal funcionalidad a desarrollar para esta memoria decae en el reconocimiento y tratamiento de archivos de audio, para su comparación y análisis, se estudió en primera instancia sobre el modo de operación de algunas aplicaciones móviles conocidas que permiten reconocer audio a partir de comparaciones con el catálogo de canciones de su base de datos. 
+
+\bigskip
+
+Este análisis permitió comprender que dichas aplicaciones basan su funcionamiento en la espectrografía, disciplina que se dedica a medir la frecuencia de los sonidos en un determinado espacio de tiempo. De esta forma, un fragmento de música puede ser representado como una gráfica de frecuencias llamadas espectrogramas, donde en un eje, se observa el tiempo, en otro la frecuencia; y en algunos casos, un tercer eje representa la intensidad del sonido.
+
+
+\section{Fiscalización de derechos de propiedad intelectual}
+\lipsum[2-4]
+
+\subsection{Content ID}
+Sistema que escanea vídeos de YouTube y, si encuentra contenido con derechos –música, imagen, etcétera– notifica tanto al usuario como al poseedor legal del contenido.
+Actually licensed from a company called Audible Magic: http://www.audiblemagic.com/ [7]
+
+
+\subsection{Monitec}
+Comercialización de herramientas tecnológicas para la captura, reconocimiento y monitoreo de medios electrónicos y acústicos. Utiliza huellas o patrones digitales de las canciones y anuncios publicitarios que se quieren detectar y las utiliza como base para recorrer, en tiempo real, la señal de radio o televisión que captan sus antenas.
+
+\bigskip
+
+El sistema de monitoreo musical y publicitario de Monitec ofrece un software diseñado especialmente para uso de la industria discográfica, industria publicitaria, medios de comunicación y sociedades de gestión colectiva. Monitoreo de Publicidad: Control de Pauta detallado, con el conteo y el detalle exacto de las apariciones de su cuña o spot publicitario en cada medio, ya sea este radio, televisión abierta o televisión por cable.
+
+
+\subsection{Vericast}
+Vericast es un servicio de BMAT (España) global de identificación de música que monitoriza millones de canciones en aproximadamente 3000 radios y televisiones de más de 60 países.
+
+\bigskip
+
+La solución ofrece una identificación a tiempo real y reportes auditables basados en la huella digital o fingerprint del audio que es resistente a alteraciones de la señal como en un canal degradado o ruidoso, cuando la música se utilice de fondo.
+Bmat opera globalmente con más de 50 clientes en Europa [9], América y Asia. En 2011 incrementó sustancialmente sus ingresos respecto a 2010 y alcanzó los 1,1 millones de euros. Este año tienen previsto cerrar con 1,6 millones. Actualmente comercializa tres líneas de productos en una tecnología protegida por varias patentes internacionales.
+
+
+\section{Algoritmos de reconocimiento acústico}
+
+La principal metodología para la recuperación y reconocimiento de audio se basa en la huella digital acústica extraída de la canción en cuestión, la cual puede consistir en una muestra uniforme, o un resumen de los puntos de interés del espectrograma. 
+Posteriormente, la información es comparada con una base de datos que consta de un catálogo de pistas de referencia para encontrar los mejores candidatos coincidentes. 
+Sin embargo, para evitar hacer una comparación con todas las pistas de la base de datos, ésta puede ser particionada por Hash Directo, Locality Sensitive Hashing, u otras técnicas que se basan en la cuantización de vectores utilizados principalmente en datos comprimidos. De esta forma, es posible realizar una búsqueda más exacta en base a la vecindad de la solución [K. Mikolajczyk and C. Schmid. Performance evaluation of local descriptors. IEEE Transactions on Pattern Analysis and Machine Intelligence, 1615– 1630, 2005.].
+Finalmente se realiza un último paso que permite tratar las coincidencias entregadas por la consulta de tal forma de eliminar de la respuesta los falsos positivos. 
+
+
+\subsection{Paper 1}
+\lipsum[2-4]
+
+\section{Sistemas de reconocimiento acústico}
+
+
+\subsection{Echoprint}
+Open source music identification system that allows anyone to build music fingerprinting into their application. It is powered by The Echo Nest.
+
+\subsection{ACRCloud}
+El servicio de reconocimiento de música ACRCloud ofrece acceso a una de las bases de datos de huellas de audio digitales más grande del mundo con uno de los mejores índices de reconocimiento de la indústria.
+Además, hemos integrado tecnologías de otros servicios musicales como Spotify, Deezer, iTunes, etc en nuestros resultados de reconocimiento, permitiendo a los desarrolladores proporcionar enlaces directos de estos servicios a sus usuarios, por ejemplo, para reproducir o comprar canciones inmediatamente.
+
+
+
+
+\subsection{Echonest}
+\lipsum[2-4]
+
+\subsection{Dejavu project}
+Audio fingerprinting and recognition algorithm implemented in Python.
+
+Dejavu can memorize audio by listening to it once and fingerprinting it. Then by playing a song and recording microphone input, Dejavu attempts to match the audio against the fingerprints held in the database, returning the song being played
+
+
+\subsection{Chromaprint}
+Chromaprint is the core component of the AcoustID project. It's a client-side library that implements a custom algorithm for extracting fingerprints from any audio source.
+
+Note that the library only calculates audio fingerprints from the provided raw uncompressed audio data. It does not deal with audio file formats in any way. Your application needs to find a way to decode audio files (MP3, MP4, FLAC, etc.) and feed the uncompressed data to Chromaprint.
+
+

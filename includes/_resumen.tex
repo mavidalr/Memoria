@@ -1,0 +1,81 @@
+%!TEX root = ../memoria.tex
+
+Plantilla \LaTeX{} para las Memorias y Tesis del Departamento de Industrias, UTFSM.
+
+Se incluyen también algunos ejemplos de cómo incorporar tablas y gráficos en distintas presentaciones respetando las Normas de Biblioteca para Memorias y Tesis de la UTFSM.
+
+\vspace{20mm}
+
+\paragraph{Palabras Clave.}
+\LaTeX{}, Plantilla para Memoria, Departamento de Industrias, UTFSM.
+
+\vspace{10mm}
+
+\begin{framed}
+\noindent\textbf{\color{red}Para el impaciente ...}
+
+Abra el archivo de configuración \inlinecode{config.tex} para cambiar título, autor, fecha, etc. de la portada y del documento en general.
+
+Abra  y compile el documento maestro \inlinecode{memoria.tex}. Si hay errores, verifique primero que todos los paquetes \LaTeX{} han sido instalados.
+
+Si desea omitir alguna sección (dedicatoria, agradecimientos, etc.), revise el documento maestro \inlinecode{memoria.tex} y agregue o comente (o elimine) las líneas correspondientes.
+
+Por ejemplo, para eliminar esta sección, borre las líneas:
+
+\begin{Verbatim}[frame=lines, label=\inlinecode{memoria.tex} (extracto)
+, fontsize=\footnotesize
+, baselinestretch=1
+, formatcom=\color{gray}]
+\section*{RESUMEN EJECUTIVO}
+\insertFile[plain]{resumen}}
+\end{Verbatim}
+\end{framed}
+
+\newpage
+\subsection*{¡Importante! [LEAME]}
+
+\subsubsection*{Impresión por ambos lados.}
+Este documento está preparado para ser impreso por ambos lados de una hoja (\emph{``twoside''}). Para cambiar esto, en la ``clase de documento'' (archivo \inlinecode{memoria.tex}), reemplazar la palabra \emph{``twoside''} por \emph{``oneside''}. Es por esto que encontrará algunas hojas que están en blanco, aparentemente sin motivo.
+
+
+\begin{Verbatim}[frame=lines, label=\inlinecode{memoria.tex} (extracto)
+, fontsize=\footnotesize
+, baselinestretch=1
+, formatcom=\color{gray}]
+%---------------------------------------------------------------------------
+%%% DOCUMENT CLASS
+\documentclass[
+    11pt,
+    letterpaper,
+    twoside
+]{thesis_utfsm}
+%---------------------------------------------------------------------------
+\end{Verbatim}
+
+
+Es posible que deba cambiar otras configuraciones también para imprimir por un sólo lado. En particular aquellas páginas en blanco después de los agradecimientos y dedicatoria.
+
+Contribuye con el ahorro de papel, no ocupes más hojas de las necesarias.
+
+\subsubsection*{Codificación de caracteres.}
+
+Todos los archivos \inlinecode{*.tex} de esta plantilla han sido preparados ocupando la codificación de caracteres por defecto \emph{unicode} (UTF-8). Windows (y algunas versiones de OSX) ocupan otro tipo de codificación (ej. \emph{Windows-1252} o \emph{Mac Roman}).
+
+Si deseas ocupar esta plantilla y encuentras problemas con los caracteres acentuados, entonces puedes optar por una de estas tres alternativas:
+\begin{enumerate}[i)]
+    \item cambiar tu editor (TexMaker, TexStudio, TexShop, etc.) para que ocupe UTF-8 como codificación de caracteres por defecto; o
+    
+    \item cambiar la codificación de cada documento \inlinecode{*.tex} para que ocupe la codificación nativa de tu sistema operativo; y, modificar el archivo \inlinecode{config.tex} la línea que dice:
+    
+    \inlinecode{\\usepackage[utf8x]\{inputenc\}}
+    
+    \item escribir todo ocupando caracteres pre-acentuados (ej. \inlinecode{\\'a} en lugar de á).
+\end{enumerate}
+
+\vspace{10mm}
+\begin{framed}
+    \noindent\textbf{Recuerde:} 
+    
+    Mezclar documentos de distintas codificaciones puede generarte muchos problemas al momento de compilar.  
+\end{framed}
+
