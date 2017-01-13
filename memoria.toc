@@ -25,11 +25,16 @@
 \contentsline {chapter}{\numberline {3}Dise\IeC {\~n}o de la soluci\IeC {\'o}n}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Metodolog\IeC {\'\i }a}{11}{section.3.1}
 \contentsline {section}{\numberline {3.2}Selecci\IeC {\'o}n de herramientas de desarrollo}{11}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Descripci\IeC {\'o}n de Dejavu Project}{11}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.1}Descripci\IeC {\'o}n de Dejavu Project}{12}{subsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.1.1}An\IeC {\'a}lisis de funcionalidad}{13}{subsubsection.3.2.1.1}
-\contentsline {section}{\numberline {3.3}Descripci\IeC {\'o}n del algoritmo}{14}{section.3.3}
-\contentsline {chapter}{\numberline {4}Experimentos}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}Caracter\IeC {\'\i }sticas del equipo}{15}{section.4.1}
-\contentsline {section}{\numberline {4.2}Implementaci\IeC {\'o}n}{15}{section.4.2}
-\contentsline {chapter}{\numberline {5}Resultados}{17}{chapter.5}
-\contentsline {chapter}{Conclusiones}{19}{chapter*.10}
+\contentsline {paragraph}{Tiempo de creaci\IeC {\'o}n de fingerprints}{14}{paragraph*.10}
+\contentsline {paragraph}{An\IeC {\'a}lisis de atributos de configuraci\IeC {\'o}n}{14}{paragraph*.11}
+\contentsline {paragraph}{Prueba de extractos de m\IeC {\'u}sica no presente en la base de datos}{14}{paragraph*.12}
+\contentsline {paragraph}{Prueba de covers en Dejavu}{15}{paragraph*.13}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Configuraci\IeC {\'o}n de Dejavu}{15}{subsubsection.3.2.1.2}
+\contentsline {section}{\numberline {3.3}Descripci\IeC {\'o}n del Programa}{15}{section.3.3}
+\contentsline {chapter}{\numberline {4}Experimentos}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Caracter\IeC {\'\i }sticas del equipo}{17}{section.4.1}
+\contentsline {section}{\numberline {4.2}Implementaci\IeC {\'o}n}{17}{section.4.2}
+\contentsline {chapter}{\numberline {5}Resultados}{19}{chapter.5}
+\contentsline {chapter}{Conclusiones}{21}{chapter*.14}

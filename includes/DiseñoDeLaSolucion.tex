@@ -3,17 +3,24 @@
 \chapter{Diseño de la solución}
 
 \section{Metodología}
-Para desarrollar la plataforma y cumplir con los objetivos planteados en \ref{sec:Objetivos}, se separó el proyecto utilizando un plan de trabajo que puede resumirse en las siguientes etapas:
+
+
+
+Para desarrollar la plataforma y cumplir con los objetivos planteados en \ref{sec:ObjetivoPrim}, se separó el proyecto utilizando un plan de trabajo que puede resumirse en las siguientes etapas:
+
 \begin{itemize}
-\item
-\item Diseñar e implementará el algoritmo de reconocimiento acústico, testeando esta etapa con un archivo de audio mp3 como entrada, para comprobar que la plataforma detecta las canciones del repertorio de prueba.
-\item Posteriormente se ampliará el alcance del algoritmo para que sea capaz de reconocer las canciones de manera simultánea en diversas radioemisoras online.
+\item Analizar algoritmos de reconocimiento acústico para implementar uno de ellos en la plataforma de fiscalización radial, y establecer su configuración según los requerimientos del sistema.
+
+\item Diseñar y desarrollar la plataforma, testeado su funcionamiento con una única radio online, y comprobar que ésta detecta las canciones del repertorio de prueba.
+
+\item ampliar el alcance de la plataforma para que sea capaz de reconocer canciones de manera simultánea, fiscalizando paralelamente en diversas radioemisoras.
 \end{itemize}
 
--pseudo codigo para una radio, definiendo funciones principales, y uso de Threads
--Cambios que se realizarán para implementar fiscalizacion en paralelo
-
 \section{Selección de herramientas de desarrollo}
+
+En base a la investigación realizada en el apartado \ref{sec:APIS} se establecieron \NumElemTablaComparativaAPIS{} aspectos para comparar los sistemas analizados, y determinar así, cual se ajusta mejor a los requerimientos del proyecto. Por ejemplo, una de las exigencias mas relevantes de la plataforma, según los objetivos secundarios planteados en \ref{sec:ObjetivosSec}, es contar con un base de datos propia que contenga todo el repertorio nacional, incluyendo además, las obras realizadas por artistas independientes, con tal de mantener toda esta información de manera local, ya sea para evitar desfases de tiempo, o cualquier otro tipo de inconvenientes, a la hora de ingresar nuevas canciones al sistema.
+
+En la tabla \ref{tab:} se señalan las características fundamentales de cada sistema. De esta colección de herramientas, se ha optado por implementar Dejavu Project, puesto que es la única que permite trabajar con los fingerprints de forma local, al permitir crear una base de datos propia. De esta forma, el tiempo de búsqueda de coincidencias entre canciones se reduce en comparación a los otros sistemas, si se considera que estos últimos requieren realizar solicitudes a fuentes externas, que no necesariamente estarán actualizadas con los últimos estrenos musicales del país.
 
 \begin{table}[]
 \centering
@@ -32,6 +39,8 @@ Sistema              & Unix-Fedora         &                  &                 
 
 
 \subsection{Descripción de Dejavu Project}
+
+
 Como se ha señalado en secciones anteriores, el proyecto Dejavu es un sistema open-source desarrollado en Python, que basa su implementación en fingerprints. Sin embargo, antes de abordar su funcionamiento y especificaciones, en necesario detallar la forma en que la música o señales de audio en nuestro entorno, son transformadas para ser almacenadas en un sistema computacional.
 
 \bigskip
@@ -104,14 +113,115 @@ La base de datos utilizada con Dejavu es MySQL, cuyo esquema contiene solo dos t
 Teniendo en consideración que se crean muchos fingerprints por canción, el campo hash es un binary(10) con tal de reducir el espacio en la base de datos.
 
 \subsubsection{Análisis de funcionalidad}
+Una vez escogido el algoritmo de reconocimiento acústico, se procede a realizar pruebas a su funcionamiento, para determinar el comportamiento frente a diversos escenarios que requieren un rendimiento adecuado por parte del programa, de modo de identificar correctamente las canciones.
+
+De esta forma, para evaluar el rendimiento de Dejavu, se han escogido 2 circunstancias, que podrían provocar mal funcionamiento del algoritmo. Asimismo, tomando en consideración los atributos del programa mencionados en la sección anterior, se determinará su comportamiento, analizando variables como tiempos de creación de fingerprints y tamaño de la base de datos, además de tiempo de respuesta, aciertos y CONFIDENCIA de las salidas del algoritmo, para determinar la mejor configuración del mismo.
+
+Cabe mencionar, que las características del equipo utilizado para realizar las pruebas mencionadas, se detallan en \ref{sec:CaracDelEquipo}.
+
+\paragraph{Tiempo de creación de fingerprints}
+Utilizando la configuración de Dejavu por defecto, se han creado 6 bases de datos, diferenciando cada uno de ellas en la cantidad de canciones, comenzando desde 10 obras musicales hasta 250, con tal de estudiar el tiempo transcurrido para realizar los fingerprints correspondientes.
+
+En la tabla \ref{tab:BDD10_250} se comparan las bases de datos creadas, observándose su tamaño, además de tiempos de creación. Se ha elaborado un gráfico (véase \ref{fig:BDD10_250}), tomando los valores de la tabla, que permite estimar el tiempo que tomaría crear fingerpirnts para 80.000 canciones, al extrapolar con una tendencia lineal. Es importante destacar que el valor 80.000 no es arbitrario, sino que corresponde a una aproximación realizada por la SCD sobre la actividad musical del país \cite{NumCanciones80k}.
+
+Analizando la ecuación del gráfico se obtiene un tiempo de 279 días, por lo que se hace necesario modificar los atributos originales del programa para reducir el tiempo de creación de la base de datos oficial de la plataforma.
+
+\paragraph{Análisis de atributos de configuración}
+Según lo descrito en \ref{subsec:DescDejavu}, Dejavu cuenta con seis atributos que pueden ser modificado a la hora de crear la base de datos, por lo que cada uno de ellos fue analizado por separado, en bases de datos cuya cantidad de canciones variaban entre  3, 5 y 7.
+
+La tabla del apéndice \ref{appendix:BDD3_5_7} contiene los valores de configuración de cada base de datos diseñada, con sus respectivos tiempos de creación y tamaños.
+
+En base a éstas, se consideraron los siguientes factores para analizar el algoritmo, realizando pruebas de reconocimiento acústico:
+
+\begin{itemize}
+\item Tiempo de respuesta de Dejavu: indica el lapso que transcurre desde que el algoritmo recibe una consulta, crea los fingerpirnts del extracto de música analizado, y se buscan coincidencias en la base de datos, hasta que se devuelve la respuesta.
+
+\item CONFIDENCIA: determina el porcentaje de confianza y veracidad de la respuesta entregada por el algoritmo.
+
+\item Acierto: esta variable determina efectivamente si la salida del algoritmo corresponde al extracto de canción analizado.
+
+\item Tamaño del extracto: elemento medido en segundos que determina la duración de cada archivo de música de prueba, abarcando un rango de 5, 10 y 15 segundos.
+
+\item Sección del extracto: corresponde al momento en que se ha creado un extracto de música de prueba. De esta forma, se comprueba si el algoritmo acierta con la respuesta, independiente si la solicitud de reconocimiento acústico se hizo al principio, al final, o en la mitad de la canción. 
+\end{itemize}
+
+Para realizar las pruebas, se escogieron tres canciones arbitrarias que estaban presentes en todas las bases de datos diseñadas.
+
+...
+
+Adicionalmente se diseñaron algunos escenarios para comprobar un comportamiento adecuado del algoritmo, los que serán definidos a continuación.
+
+\paragraph{Prueba de extractos de música no presente en la base de datos}
+
+Un segundo ensayo consistió en evaluar los tiempos de ejecución del algoritmo de reconocimiento acústico, cuando los extractos de música no pertenecen a canciones que estén presentes en la base de datos.
+ 
+Dado que la idea fundamental de esta plataforma es albergar solo la música chilena, se hizo este análisis con el propósito de determinar como sería mayoritariamente el comportamiento del algoritmo, debido a que, en general, la programación emitida por las radioemisoras nacionales es extranjera.
+
+Los resultados señalan que ... 
+
+\paragraph{Prueba de covers en Dejavu}
+
+Es esperable que los fingerprints entre covers tengan cierta similitud, por lo que se ha escogido una serie de canciones para observar las respuestas del algoritmo. Inicialmente se escogieron canciones disponibles en la base de datos, y luego, se eliminaron algunas para comprobar si la respuesta de Dejavu sería o no el cover correspondiente.
+
+Resultados...
+
+\subsubsection{Configuración de Dejavu}
+Entrecruzando toda la información de tablas y gráficos del presente capítulo, se ha optado por la siguiente configuración final de Dejavu, para el desarrollo de la plataforma:
+
+[...]
 
 
-\lipsum[2-4]
+\section{Descripción del Programa}
 
-\section{Descripción del algoritmo}
+La siguiente etapa de este proyecto consiste en diseñar y desarrollar la plataforma de fiscalización, de tal forma que abarque solo la supervisión de una radio online. Por tanto, para abordar este requerimiento, se identificaron las tareas fundamentales del sistema para lograr su funcionamiento, las que se aprecian en el siguiente seudocódigo.
 
--Estructuras usadas
--Entrada/salida
-\lipsum[2-4]
+
+--Establecer valores de entrada
+while (fin tiempo fiscalización)
+	--Acceder a la url del streaming
+	--Transformar señal continua de música en extractos discretos
+	--Reconocer extracto con Dejavu
+	--Exportar respuesta a documento de fiscalización
+end
+
+Cabe mencionar que la salida del programa corresponde a un archivo de texto que enlista el nombre de las canciones, con sus respectivos tiempos cronológicos de emisión.
+
+La primera línea del código involucra determinar ciertos valores para la ejecución del programa, cuyo detalle se presenta a continuación:
+
+\begin{itemize}
+\item url: string que almacena el link del streaming de la radio que se controla.
+\item delay: variable entera definida en segundos que indica cada cuanto tiempo se están creando extractos de música desde la radio, para transformar la señal continua en discreta, y hacer uso de Dejavu para su reconocimiento.
+
+\item: fechaLimite: variable tipo fecha que puede ser definida de dos formas.
+
+\begin{itemize}
+\item fechaLimite en minutos: esta variable contabiliza el tiempo desde que se corre el programa hasta que transcurran los minutos definidos por el usuario.
+\item fechaLimite como día: el programa se ejecuta hasta el día, hora, minutos y segundos, que se le definieron.
+\end{itemize}
+
+\item nombreRadio: variable que identifica por un nombre corto la radio que se analiza, y cuyo valor será utilizado para nombrar el archivo de salida.
+
+\item segundosExtracto: variable entera que indica la duración que tendrán los extractos de música creados desde el streaming.
+
+\end{itemize}
+
+Para el ciclo iterativo se desarrolló una función llamada Repetir, la que se llama a sí misma cada cierto tiempo definido por la variable delay. Ésta, a su vez, llama a la función GenerarSplit, pero con un nuevo hilo de ejecución. De esta forma, independiente que el algoritmo tarde mucho en reconocer alguna canción, seguirán creándose extractos según los segundos definidos, sin necesidad de esperar la respuesta de Dejavu.
+
+--Repetir(atributos)
+--GenerarExtracto(atributos)
+
+GenerarExtracto por su parte, corresponde a la función con más líneas de código, debido a que agrupa las tareas fundamentales. El próximo seudocódigo especifica su labor.
+
+--Determinar nombre de archivo del extracto y fecha de creación
+--while (time.time() - inicio < int(segundosExtracto*2))
+	descargar segundos streaming
+--cortar extracto 
+[…]
+
+
+Cabe destacar que el valor de la variable segundosDescarga es duplicado, debido a que la duración real de cada extracto varía en función de la memoria, tiempo de respuesta del servidor del streaming, etc, por lo que en ocasiones, estos archivos serán más cortos que el tiempo requerido.
+
+[...]
+
 
 
