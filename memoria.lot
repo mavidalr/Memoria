@@ -3,5 +3,18 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces My caption\relax }}{11}{table.caption.9}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Nombre y tipos de datos que conforman las tablas de la base de datos de Dejavu.\relax }}{15}{table.caption.13}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Valores de los par\IeC {\'a}metros de la nueva configuraci\IeC {\'o}n de Dejavu.\relax }}{19}{table.caption.19}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces Valores originales de los par\IeC {\'a}metros de Dejavu.\relax }}{33}{table.caption.24}
+\contentsline {table}{\numberline {7.2}{\ignorespaces Tiempo de creaci\IeC {\'o}n de bases de datos, con los valores originales de Dejavu.\relax }}{34}{table.caption.25}
+\contentsline {table}{\numberline {7.3}{\ignorespaces Tiempo de creaci\IeC {\'o}n de bases de datos, con los valores de configuraci\IeC {\'o}n.\relax }}{34}{table.caption.26}
+\contentsline {table}{\numberline {7.4}{\ignorespaces Valores de configuraci\IeC {\'o}n de las bases de datos de 3 y 5 canciones.\relax }}{35}{table.caption.27}
+\contentsline {table}{\numberline {7.5}{\ignorespaces Resumen de los resultados de Dejavu al probar 27 extractos de m\IeC {\'u}sica.\relax }}{36}{table.caption.28}
+\contentsline {table}{\numberline {7.6}{\ignorespaces Resumen de los resultados de Dejavu al probar 18 extractos de m\IeC {\'u}sica.\relax }}{37}{table.caption.29}
+\contentsline {table}{\numberline {7.7}{\ignorespaces Resumen de los resultados de Dejavu al probar 45 extractos de m\IeC {\'u}sica.\relax }}{38}{table.caption.30}
+\contentsline {table}{\numberline {7.8}{\ignorespaces Resumen de los resultados de Dejavu al probar 216 extractos de covers.\relax }}{39}{table.caption.31}
+\contentsline {table}{\numberline {7.9}{\ignorespaces Resumen de los resultados de Dejavu al probar 27 extractos de covers.\relax }}{40}{table.caption.32}

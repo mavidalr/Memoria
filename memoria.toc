@@ -26,15 +26,20 @@
 \contentsline {section}{\numberline {3.1}Metodolog\IeC {\'\i }a}{11}{section.3.1}
 \contentsline {section}{\numberline {3.2}Selecci\IeC {\'o}n de herramientas de desarrollo}{11}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Descripci\IeC {\'o}n de Dejavu Project}{12}{subsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.1.1}An\IeC {\'a}lisis de funcionalidad}{13}{subsubsection.3.2.1.1}
-\contentsline {paragraph}{Tiempo de creaci\IeC {\'o}n de fingerprints}{14}{paragraph*.10}
-\contentsline {paragraph}{An\IeC {\'a}lisis de atributos de configuraci\IeC {\'o}n}{14}{paragraph*.11}
-\contentsline {paragraph}{Prueba de extractos de m\IeC {\'u}sica no presente en la base de datos}{14}{paragraph*.12}
-\contentsline {paragraph}{Prueba de covers en Dejavu}{15}{paragraph*.13}
-\contentsline {subsubsection}{\numberline {3.2.1.2}Configuraci\IeC {\'o}n de Dejavu}{15}{subsubsection.3.2.1.2}
-\contentsline {section}{\numberline {3.3}Descripci\IeC {\'o}n del Programa}{15}{section.3.3}
-\contentsline {chapter}{\numberline {4}Experimentos}{17}{chapter.4}
-\contentsline {section}{\numberline {4.1}Caracter\IeC {\'\i }sticas del equipo}{17}{section.4.1}
-\contentsline {section}{\numberline {4.2}Implementaci\IeC {\'o}n}{17}{section.4.2}
-\contentsline {chapter}{\numberline {5}Resultados}{19}{chapter.5}
-\contentsline {chapter}{Conclusiones}{21}{chapter*.14}
+\contentsline {subsubsection}{\numberline {3.2.1.1}An\IeC {\'a}lisis de funcionalidad}{15}{subsubsection.3.2.1.1}
+\contentsline {paragraph}{A: Tiempo de creaci\IeC {\'o}n de fingerprints}{16}{paragraph*.14}
+\contentsline {paragraph}{B: An\IeC {\'a}lisis de atributos de configuraci\IeC {\'o}n}{16}{paragraph*.16}
+\contentsline {paragraph}{C: Prueba de extractos de m\IeC {\'u}sica inexistentes en la base de datos}{18}{paragraph*.18}
+\contentsline {paragraph}{Prueba de covers en Dejavu}{19}{paragraph*.20}
+\contentsline {section}{\numberline {3.3}Descripci\IeC {\'o}n del programa}{20}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Fiscalizaci\IeC {\'o}n de una radioemisora online}{20}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Fiscalizaci\IeC {\'o}n paralela}{21}{subsection.3.3.2}
+\contentsline {chapter}{\numberline {4}Experimentos}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Caracter\IeC {\'\i }sticas del equipo}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Implementaci\IeC {\'o}n}{23}{section.4.2}
+\contentsline {chapter}{\numberline {5}Resultados}{25}{chapter.5}
+\contentsline {chapter}{Conclusiones}{27}{chapter*.21}
+\contentsline {chapter}{\numberline {6}Figuras}{29}{chapter.6}
+\contentsline {section}{\numberline {6.1}1}{29}{section.6.1}
+\contentsline {chapter}{\numberline {7}Tablas}{33}{chapter.7}
+\contentsline {section}{\numberline {7.1}1}{33}{section.7.1}

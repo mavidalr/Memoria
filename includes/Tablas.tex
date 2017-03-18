@@ -1,0 +1,351 @@
+%!TEX root = ../memoria.tex
+
+\chapter{Tablas}
+
+\section{1}
+
+
+\FloatBarrier
+\begin{table}[]
+\centering
+\caption{Valores originales de los parámetros de Dejavu.}
+\label{tab:ConfiguracionBDDF35}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\midrule
+\multicolumn{1}{c}{Parámetro} & \multicolumn{1}{c}{F3\_3} & \multicolumn{1}{c}{F3\_5} \\ \midrule
+DEFAULT\_OVERLAP\_RATIO   & 0,5                       & 0,5                       \\
+DEFAULT\_FAN\_VALUE       & 15                        & 15                        \\
+DEFAULT\_AMP\_MIN         & 10                        & 10                        \\
+PEAK\_NEIGHBORHOOD\_SIZE  & 20                        & 20                        \\
+PEAK\_SORT                & True                      & True                      \\
+\midrule
+Segundos                  & 322                       & 591                       \\
+Fingerprints              & 470.938                   & 865.039                   \\
+Tamaño {[}MB{]}           & 43,16                     & 82,25                     \\ \midrule \bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\caption{Tiempo de creación de bases de datos, con los valores originales de Dejavu.}
+\label{tab:TiemposOriginales}
+\begin{tabular}{@{}crrr@{}}
+\toprule
+\midrule
+\multicolumn{1}{l}{Número de canciones} & \multicolumn{1}{l}{Tiempo {[}seg{]}} & \multicolumn{1}{l}{Tiempo {[}min{]}} & \multicolumn{1}{l}{Tiempo {[}hr{]}} \\ \midrule
+3                                       & 322                                  & 5,4                                  & 0,1                                 \\
+5                                       & 591                                  & 9,9                                  & 0,2                                 \\
+10                                      & 2.448                                & 40,8                                 & 0,7                                 \\
+50                                      & 11.411                               & 190,2                                & 3,2                                 \\
+100                                     & 24.938                               & 415,6                                & 6,9                                 \\
+150                                     & 39.689                               & 661,5                                & 11,0                                \\
+200                                     & 59.094                               & 984,9                                & 16,4                                \\
+250                                     & 73.706                               & 1.228,4                              & 20,5                                
+\\ \midrule \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[]
+\centering
+\caption{Tiempo de creación de bases de datos, con los valores de configuración.}
+\label{tab:TiemposNuevaConfiguracion}
+\begin{tabular}{@{}crrr@{}}
+\toprule
+\midrule
+\multicolumn{1}{l}{Número de canciones} & \multicolumn{1}{l}{Tiempo {[}seg{]}} & \multicolumn{1}{l}{Tiempo {[}min{]}} & \multicolumn{1}{l}{Tiempo {[}hr{]}} \\ \midrule
+10                                      & 396                                & 6,6                                  & 0,1                                 \\
+20                                      & 802                                & 13,4                                 & 0,2                                 \\
+30                                      & 1124                               & 18,7                                 & 0,3                                 \\
+50                                      & 2206                               & 36,8                                 & 0,6                                 \\
+100                                     & 5555                               & 92,6                                 & 1,5                                 \\
+150                                     & 8666                               & 144,4                                & 2,4                                 \\
+200                                     & 12821                              & 213,7                                & 3,6                                 \\
+250                                     & 17428                              & 290,5                                & 4,8                                 \\
+\midrule \bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\caption{Valores de configuración de las bases de datos de 3 y 5 canciones.}{La tabla señala las 26 bases de datos para las cuales se modifica un solo parámetro de configuración, con sus respectivos tiempos de creación, cantidad de fingerprints y tamaño.}
+\label{tab:ConfiguracionBDD35}
+\begin{tabular}{@{}ccrrrr@{}}
+\toprule
+\midrule
+Bases de datos & Variable modificada                       & \multicolumn{1}{c}{Valor} & \multicolumn{1}{c}{Segundos} & \multicolumn{1}{c}{Fingerprints} & \multicolumn{1}{c}{Tamaño {[}MB{]}} \\ \midrule
+A1\_3          & \multirow{6}{*}{DEFAULT\_OVERLAP\_RATIO}  & 0,10                      & 118                          & 264.963                          & 26,09                               \\
+A1\_5          &                                           & 0,10                      & 226                          & 488.378                          & 47,17                               \\
+A2\_3          &                                           & 0,30                      & 183                          & 340.149                          & 30,11                               \\
+A2\_5          &                                           & 0,30                      & 328                          & 623.970                          & 58,19                               \\
+A3\_3          &                                           & 0,70                      & 779                          & 760.517                          & 66,22                               \\
+A3\_5          &                                           & 0,70                      & 1492                         & 1.389.934                        & 119,31                              \\\midrule
+B1\_3          & \multirow{6}{*}{DEFAULT\_FAN\_VALUE}      & 4                         & 78                           & 101.020                          & 11,06                               \\
+B1\_5          &                                           & 4                         & 144                          & 185.543                          & 19,09                               \\
+B2\_3          &                                           & 7                         & 85                           & 202.019                          & 21,09                               \\
+B2\_5          &                                           & 7                         & 151                          & 371.056                          & 37,16                               \\
+B3\_3          &                                           & 10                        & 137                          & 302.977                          & 27,11                               \\
+B3\_5          &                                           & 10                        & 218                          & 556.456                          & 48,17                               \\
+\midrule
+C1\_3          & \multirow{6}{*}{DEFAULT\_AMP\_MIN}        & 20                        & 284                          & 455.623                          & 41,16                               \\
+C1\_5          &                                           & 20                        & 455                          & 831.922                          & 84,25                               \\
+C2\_3          &                                           & 30                        & 219                          & 346.760                          & 30,11                               \\
+C2\_5          &                                           & 30                        & 374                          & 663.643                          & 56,19                               \\
+C3\_3          &                                           & 40                        & 125                          & 174.205                          & 17,06                               \\
+C3\_5          &                                           & 40                        & 253                          & 344.135                          & 31,11                               \\
+\midrule
+D1\_3          & \multirow{6}{*}{PEAK\_NEIGHBORHOOD\_SIZE} & 30                        & 162                          & 213.056                          & 21,09                               \\
+D1\_5          &                                           & 30                        & 290                          & 396.462                          & 38,14                               \\
+D2\_3          &                                           & 40                        & 262                          & 118.504                          & 13,06                               \\
+D2\_5          &                                           & 40                        & 466                          & 224.778                          & 23,09                               \\
+D3\_3          &                                           & 50                        & 404                          & 75.614                           & 7,06                                \\
+D3\_5          &                                           & 50                        & 720                          & 144.452                          & 14,06                               \\
+\midrule
+E1\_3          & \multirow{2}{*}{PEAK\_SORT}               & FALSE                     & 100                          & 24.725                           & 3,06                                \\
+E1\_5          &                                           & FALSE                     & 240                          & 46.162                           & 6,06                                \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+
+\begin{sidewaystable}
+\centering
+\caption{Resumen de los resultados de Dejavu al probar 27 extractos de música.}{Las pruebas se realizaron con cada base de datos que solo contiene 3 canciones, generando extractos de 5,10, y 15 segundos para realizar el reconocimiento acústico.}
+\label{tab:Resumen3Canciones}
+\begin{tabular}{@{}ccc|rrrrrrrrrrrrrr@{}}
+\toprule
+\midrule
+\multicolumn{2}{c}{Salida}                                            &  Segundos  & \multicolumn{1}{c}{A1} & \multicolumn{1}{c}{A2} & \multicolumn{1}{c}{A3} & \multicolumn{1}{c}{B1} & \multicolumn{1}{c}{B2} & \multicolumn{1}{c}{B3} & \multicolumn{1}{c}{C1} & \multicolumn{1}{c}{C2} & \multicolumn{1}{c}{C3} & \multicolumn{1}{c}{D1} & \multicolumn{1}{c}{D2} & \multicolumn{1}{c}{D3} & \multicolumn{1}{c}{E1} & \multicolumn{1}{c}{F1} \\ \midrule
+\multirow{6}{*}{Respuesta Dejavu}    & \multirow{3}{*}{Aciertos}   & 5  & 9                      & 9                      & 9                      & 9                      & 8                      & 8                      & 8                      & 8                      & 8                      & 8                      & 8                      & 8                      & 2                      & 8                      \\
+                                     &                             & 10 & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 1                      & 9                      \\
+                                     &                             & 15 & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 9                      & 3                      & 9                      \\ \cmidrule{2-17}
+                                     & \multirow{3}{*}{Errores}    & 5  & 0                      & 0                      & 0                      & 0                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 0                      & 0                      & 1                      \\ 
+                                     &                             & 10 & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\
+                                     &                             & 15 & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Sin respuesta}}                 & 5  & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 1                      & 7                      & 0                      \\
+\multicolumn{2}{c}{}                                               & 10 & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 8                      & 0                      \\
+\multicolumn{2}{c}{}                                               & 15 & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 6                      & 0                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo mínimo de búsqueda {[}seg{]}}}     & 5  & 1                      & 1                      & 4                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 3                      & 3                      \\
+\multicolumn{2}{c}{}                                               & 10 & 2                      & 3                      & 9                      & 2                      & 2                      & 2                      & 3                      & 2                      & 2                      & 2                      & 2                      & 2                      & 3                      & 8                      \\
+\multicolumn{2}{c}{}                                               & 15 & 3                      & 4                      & 14                     & 3                      & 3                      & 3                      & 5                      & 4                      & 3                      & 3                      & 3                      & 1                      & 10                     & 13                     \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo máximo de búsqueda {[}seg{]}}}     & 5  & 4                      & 1                      & 6                      & 1                      & 1                      & 1                      & 2                      & 2                      & 1                      & 1                      & 1                      & 2                      & 11                     & 5                      \\
+\multicolumn{2}{c}{}                                               & 10 & 7                      & 3                      & 12                     & 2                      & 2                      & 2                      & 5                      & 3                      & 2                      & 2                      & 2                      & 3                      & 7                      & 11                     \\
+\multicolumn{2}{c}{}                                               & 15 & 11                     & 5                      & 18                     & 3                      & 3                      & 3                      & 8                      & 6                      & 3                      & 3                      & 3                      & 3                      & 11                     & 16                     \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia mínima (aciertos)}} & 5  & 1                      & 3                      & 1                      & 1                      & 39                     & 56                     & 78                     & 39                     & 2                      & 30                     & 10                     & 5                      & 1                      & 78                     \\
+\multicolumn{2}{c}{}                                               & 10 & 7                      & 15                     & 20                     & 24                     & 42                     & 71                     & 87                     & 43                     & 18                     & 24                     & 9                      & 3                      & 3                      & 88                     \\
+\multicolumn{2}{c}{}                                               & 15 & 7                      & 15                     & 20                     & 68                     & 126                    & 179                    & 243                    & 215                    & 62                     & 89                     & 29                     & 20                     & 1                      & 243                    \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia máxima (errores)}}  & 5  & -                      & -                      & -                      & -                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & 1                      & -                      & -                      & 1                      \\
+\multicolumn{2}{c}{}                                               & 10 & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\multicolumn{2}{c}{}                                               & 15 & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\midrule
+\multicolumn{2}{c}{Días estimados para la creación de 80000 canciones}         &    & 100                    & 134                    & 660                    & 62                     & 62                     & 76                     & 158                    & 328                    & 118                    & 248                    & 436                    & 660                    &                        & 250                    \\ \midrule \bottomrule
+\end{tabular}
+\end{sidewaystable}
+
+
+
+
+
+\begin{sidewaystable}
+\centering
+\caption{Resumen de los resultados de Dejavu al probar 18 extractos de música.}{Los extractos de 5, 10, y 15 segundos, se generan de 2 canciones aleatorias que no son parte de las bases de datos.}
+\label{tab:Resumen3SinCanciones}
+\begin{tabular}{@{}ccc|rrrrrrrrrrrrrr@{}}
+\toprule
+\midrule
+\multicolumn{2}{c}{Salida}                                            &  Segundos  & \multicolumn{1}{c}{A1} & \multicolumn{1}{c}{A2} & \multicolumn{1}{c}{A3} & \multicolumn{1}{c}{B1} & \multicolumn{1}{c}{B2} & \multicolumn{1}{c}{B3} & \multicolumn{1}{c}{C1} & \multicolumn{1}{c}{C2} & \multicolumn{1}{c}{C3} & \multicolumn{1}{c}{D1} & \multicolumn{1}{c}{D2} & \multicolumn{1}{c}{D3} & \multicolumn{1}{c}{E1} & \multicolumn{1}{c}{F1} \\ \midrule
+
+\multirow{6}{*}{Respuesta Dejavu}   & \multirow{3}{*}{Aciertos}  & 5                    & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\
+                                      &                            & 10                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\
+                                      &                            & 15                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\ \cmidrule{2-17}
+                                      & \multirow{3}{*}{Errores}   & 5                    & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 5                      & 5                      & 0                      & 6                      \\
+                                      &                            & 10                   & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 0                      & 6                      \\
+                                      &                            & 15                   & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 6                      & 0                      & 6                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Sin Respuesta}}            & 5                    & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 1                      & 1                      & 6                      & 0                      \\
+\multicolumn{2}{c}{}                                               & 10                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 6                      & 0                      \\
+\multicolumn{2}{c}{}                                               & 15                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 6                      & 0                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo mínimo de búsqueda {[}seg{]}}}     & 5                    & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     \\
+\multicolumn{2}{c}{}                                               & 10                   & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     \\
+\multicolumn{2}{c}{}                                               & 15                   & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     & -1                     \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo máximo de búsqueda {[}seg{]}}}     & 5                    & 1                      & 1                      & 6                      & 1                      & 1                      & 1                      & 3                      & 2                      & 1                      & 1                      & 2                      & 2                      & -1                     & 6                      \\
+\multicolumn{2}{c}{}                                               & 10                   & 2                      & 3                      & 12                     & 2                      & 2                      & 2                      & 5                      & 4                      & 2                      & 2                      & 3                      & 3                      & -1                     & 11                     \\
+\multicolumn{2}{c}{}                                               & 15                   & 3                      & 5                      & 18                     & 3                      & 3                      & 3                      & 8                      & 6                      & 3                      & 3                      & 3                      & 3                      & -1                     & 17                     \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia mínima (aciertos)}} & 5                    & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\multicolumn{2}{c}{}                                               & 10                   & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\multicolumn{2}{c}{}                                               & 15                   & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia máxima (errores)}}  & 5                    & 3                      & 3                      & 3                      & 4                      & 4                      & 4                      & 4                      & 4                      & 3                      & 2                      & 2                      & 1                      & -                      & 4                      \\
+\multicolumn{2}{c}{}                                               & 10                   & 4                      & 4                      & 4                      & 4                      & 4                      & 4                      & 4                      & 4                      & 3                      & 3                      & 2                      & 1                      & -                      & 4                      \\
+\multicolumn{2}{c}{}                                               & 15                   & 4                      & 4                      & 6                      & 4                      & 4                      & 4                      & 4                      & 4                      & 3                      & 3                      & 3                      & 2                      & -                      & 4                      \\
+\midrule
+\multicolumn{2}{c}{Días estimados para la creación de 80000 canciones}         &                      & 100                    & 134                    & 660                    & 62                     & 62                     & 76                     & 158                    & 328                    & 118                    & 248                    & 436                    & 660                    &                        & 250                    \\ \midrule \bottomrule
+
+
+\end{tabular}
+\end{sidewaystable}
+
+\begin{sidewaystable}
+\centering
+\caption{Resumen de los resultados de Dejavu al probar 45 extractos de música.}{Las pruebas se realizaron con cada base de datos que solo contiene 5 canciones, generando extractos de 5,10, y 15 segundos para realizar el reconocimiento acústico.}
+\label{tab:Resumen5Canciones}
+\begin{tabular}{@{}ccc|rrrrrrrrrrrrrr@{}}
+\toprule
+\midrule
+\multicolumn{2}{c}{Salida}                                            &  Segundos  & \multicolumn{1}{c}{A1} & \multicolumn{1}{c}{A2} & \multicolumn{1}{c}{A3} & \multicolumn{1}{c}{B1} & \multicolumn{1}{c}{B2} & \multicolumn{1}{c}{B3} & \multicolumn{1}{c}{C1} & \multicolumn{1}{c}{C2} & \multicolumn{1}{c}{C3} & \multicolumn{1}{c}{D1} & \multicolumn{1}{c}{D2} & \multicolumn{1}{c}{D3} & \multicolumn{1}{c}{E1} & \multicolumn{1}{c}{F1} \\ \midrule
+
+
+\multirow{6}{*}{Con reconocimiento}   & \multirow{3}{*}{Aciertos}  & 5                    & 14                     & 15                     & 15                     & 15                     & 14                     & 14                     & 14                     & 14                     & 12                     & 14                     & 14                     & 14                     & 3                      & 14                     \\
+                                      &                            & 10                   & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 3                      & 15                     \\
+                                      &                            & 15                   & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 15                     & 4                      & 15                     \\ \cmidrule{2-17}
+                                      & \multirow{3}{*}{Errores}   & 5                    & 1                      & 0                      & 0                      & 0                      & 1                      & 1                      & 1                      & 1                      & 3                      & 1                      & 1                      & 1                      & 0                      & 1                      \\
+                                      &                            & 10                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\
+                                      &                            & 15                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Sin reconocimiento}}            & 5                    & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 12                     & 0                      \\
+\multicolumn{2}{c}{}                                               & 10                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 12                     & 0                      \\
+\multicolumn{2}{c}{}                                               & 15                   & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 0                      & 11                     & 0                      \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo mínimo de búsqueda {[}seg{]}}}     & 5                    & 1                      & 1                      & 4                      & 1                      & 1                      & 1                      & 1                      & 1                      & 3                      & 1                      & 1                      & 1                      & 3                      & 4                      \\
+\multicolumn{2}{c}{}                                               & 10                   & 3                      & 3                      & 9                      & 2                      & 2                      & 3                      & 3                      & 3                      & 7                      & 3                      & 2                      & 2                      & 3                      & 9                      \\
+\multicolumn{2}{c}{}                                               & 15                   & 5                      & 5                      & 14                     & 3                      & 5                      & 5                      & 6                      & 6                      & 12                     & 5                      & 3                      & 3                      & 11                     & 14                     \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo máximo de búsqueda {[}seg{]}}}     & 5                    & 3                      & 3                      & 7                      & 1                      & 2                      & 3                      & 3                      & 3                      & 5                      & 2                      & 1                      & 1                      & 11                     & 7                      \\
+\multicolumn{2}{c}{}                                               & 10                   & 5                      & 5                      & 13                     & 2                      & 4                      & 5                      & 6                      & 5                      & 10                     & 5                      & 2                      & 2                      & 7                      & 13                     \\
+\multicolumn{2}{c}{}                                               & 15                   & 9                      & 8                      & 19                     & 3                      & 7                      & 8                      & 9                      & 8                      & 15                     & 7                      & 3                      & 3                      & 11                     & 19                     \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia mínima (aciertos)}} & 5                    & 1                      & 2                      & 1                      & 1                      & 11                     & 15                     & 9                      & 3                      & 26                     & 4                      & 2                      & 1                      & 1                      & 19                     \\
+\multicolumn{2}{c}{}                                               & 10                   & 7                      & 15                     & 19                     & 24                     & 42                     & 66                     & 87                     & 43                     & 18                     & 24                     & 7                      & 3                      & 2                      & 88                     \\
+\multicolumn{2}{c}{}                                               & 15                   & 7                      & 15                     & 20                     & 43                     & 69                     & 104                    & 143                    & 109                    & 62                     & 31                     & 8                      & 4                      & 1                      & 138                    \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia máxima (errores)}}  & 5                    & 5                      & -                      & -                      & -                      & 1                      & 1                      & 1                      & 1                      & 3                      & 1                      & 1                      & 1                      & -                      & 1                      \\
+\multicolumn{2}{c}{}                                               & 10                   & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\multicolumn{2}{c}{}                                               & 15                   & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      & -                      \\
+\midrule
+\multicolumn{2}{c}{Días estimados para la creación de 80000 canciones}          &                      & 100                    & 134                    & 660                    & 62                     & 62                     & 76                     & 158                    & 328                    & 118                    & 248                    & 436                    & 660                    &                        & 250                    \\ \midrule \bottomrule
+
+
+\end{tabular}
+\end{sidewaystable}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{sidewaystable}
+\centering
+\caption{Resumen de los resultados de Dejavu al probar 216 extractos de covers.}{Los extractos de 5, 10, y 15 segundos, se generan de 24 covers presentes en las bases de datos.}
+\label{tab:ResumenCovers}
+\begin{tabular}{@{}ccc|rrrrrr@{}}
+\toprule
+\midrule
+\multicolumn{2}{c}{Salida}                                         & Segundos & \multicolumn{1}{c}{Covers30} & \multicolumn{1}{c}{Covers50} & \multicolumn{1}{c}{Covers100} & \multicolumn{1}{c}{Covers150} & \multicolumn{1}{c}{Covers200} & \multicolumn{1}{c}{Covers250} \\ \midrule
+\multirow{6}{*}{Con reconocimiento}   & \multirow{3}{*}{Aciertos}  & 5        & 61                           & 61                           & 60                            & 60                            & 60                            & 60                            \\
+                                      &                            & 10       & 71                           & 71                           & 71                            & 71                            & 71                            & 71                            \\
+                                      &                            & 15       & 72                           & 72                           & 72                            & 72                            & 72                            & 72                            \\ \cmidrule{2-9}
+                                      & \multirow{3}{*}{Errores}   & 5        & 4                            & 4                            & 5                             & 5                             & 5                             & 5                             \\
+                                      &                            & 10       & 0                            & 0                            & 0                             & 0                             & 0                             & 0                             \\
+                                      &                            & 15       & 0                            & 0                            & 0                             & 0                             & 0                             & 0                             \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Sin reconocimiento}}            & 5        & 7                            & 7                            & 7                             & 7                             & 7                             & 7                             \\
+\multicolumn{2}{c}{}                                               & 10       & 1                            & 1                            & 1                             & 1                             & 1                             & 1                             \\
+\multicolumn{2}{c}{}                                               & 15       & 0                            & 0                            & 0                             & 0                             & 0                             & 0                             \\
+\midrule\multicolumn{2}{c}{\multirow{3}{*}{Tiempo mínimo de búsqueda}}     & 5        & 1                            & 1                            & 1                             & 1                             & 1                             & 1                             \\
+\multicolumn{2}{c}{}                                               & 10       & 1                            & 1                            & 1                             & 1                             & 1                             & 1                             \\
+\multicolumn{2}{c}{}                                               & 15       & 1                            & 1                            & 1                             & 1                             & 1                             & 1                             \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo máximo de búsqueda}}     & 5        & 6                            & 6                            & 7                             & 7                             & 7                             & 7                             \\
+\multicolumn{2}{c}{}                                               & 10       & 6                            & 6                            & 6                             & 7                             & 7                             & 7                             \\
+\multicolumn{2}{c}{}                                               & 15       & 6                            & 7                            & 7                             & 7                             & 7                             & 7                             \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia mínima (aciertos)}} & 5        & 2                            & 2                            & 8                             & 8                             & 8                             & 8                             \\
+\multicolumn{2}{c}{}                                               & 10       & 7                            & 7                            & 7                             & 7                             & 7                             & 7                             \\
+\multicolumn{2}{c}{}                                               & 15       & 53                           & 53                           & 53                            & 53                            & 53                            & 53                            \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia máxima (errores)}}  & 5        & 3                            & 3                            & 4                             & 4                             & 4                             & 4                             \\
+\multicolumn{2}{c}{}                                               & 10       & -                            & -                            & -                             & -                             & -                             & -                             \\
+\multicolumn{2}{c}{}                                               & 15       & -                            & -                            & -                             & -                             & -                             & -                            
+                         
+\\ \midrule \bottomrule 
+
+
+\end{tabular}
+\end{sidewaystable}
+
+
+
+\begin{sidewaystable}
+\centering
+\caption{Resumen de los resultados de Dejavu al probar 27 extractos de covers.}{Los extractos de 5, 10, y 15 segundos, se generan de 3 covers que no están presentes en las bases de datos.}
+\label{tab:ResumenCoversNoPresentes}
+\begin{tabular}{@{}ccc|rr@{}}
+\toprule
+\midrule
+\multicolumn{2}{c}{Salida}                                         & Segundos & \multicolumn{1}{c}{Covers10} & \multicolumn{1}{c}{Covers20} \\ \midrule
+\multirow{6}{*}{Con reconocimiento}   & \multirow{3}{*}{Aciertos}  & 5        & 0                            & 0                            \\
+                                      &                            & 10       & 0                            & 0                            \\
+                                      &                            & 15       & 0                            & 0                            \\ \cmidrule{2-5}
+                                      & \multirow{3}{*}{Errores}   & 5        & 7                            & 7                            \\
+                                      &                            & 10       & 9                            & 9                            \\
+                                      &                            & 15       & 9                            & 9                            \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Sin reconocimiento}}            & 5        & 2                            & 2                            \\
+\multicolumn{2}{c}{}                                               & 10       & 0                            & 0                            \\
+\multicolumn{2}{c}{}                                               & 15       & 0                            & 0                            \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo mínimo de búsqueda}}     & 5        & 1                            & 1                            \\
+\multicolumn{2}{c}{}                                               & 10       & 1                            & 1                            \\
+\multicolumn{2}{c}{}                                               & 15       & 1                            & 1                            \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Tiempo máximo de búsqueda}}     & 5        & 5                            & 7                            \\
+\multicolumn{2}{c}{}                                               & 10       & 5                            & 6                            \\
+\multicolumn{2}{c}{}                                               & 15       & 3                            & 4                            \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia mínima (aciertos)}} & 5        & -                            & -                            \\
+\multicolumn{2}{c}{}                                               & 10       & -                            & -                            \\
+\multicolumn{2}{c}{}                                               & 15       & -                            & -                            \\
+\midrule
+\multicolumn{2}{c}{\multirow{3}{*}{Confidencia máxima (errores)}}  & 5        & 6                            & 6                            \\
+\multicolumn{2}{c}{}                                               & 10       & 6                            & 6                            \\
+\multicolumn{2}{c}{}                                               & 15       & 6                            & 6                           
+\\ \midrule \bottomrule 
+\end{tabular}
+\end{sidewaystable}
