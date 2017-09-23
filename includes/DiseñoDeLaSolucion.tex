@@ -18,9 +18,9 @@ Para desarrollar la plataforma y cumplir con los objetivos planteados en \ref{se
 
 \section{Selección de herramientas de desarrollo} \label{sec:SeleccionHerramientas}
 
-En base a la investigación realizada en el apartado \ref{sec:SistemasRA} se establecieron \NumElemTablaComparativaAPIS{} aspectos para comparar los sistemas analizados, y determinar así, cual se ajusta mejor a los requerimientos del proyecto. Por ejemplo, una de las exigencias mas relevantes de la plataforma, según los objetivos secundarios planteados en \ref{sec:ObjetivosSec}, es contar con un base de datos propia que contenga todo el repertorio nacional, incluyendo además, las obras realizadas por artistas independientes, con tal de mantener toda esta información de manera local, ya sea para evitar desfases de tiempo, o cualquier otro tipo de inconveniente, a la hora de ingresar nuevas canciones a la plataforma.
+En base a la investigación realizada en el apartado \ref{sec:APIS} se establecieron \NumElemTablaComparativaAPIS{} aspectos para comparar los sistemas analizados, y determinar así, cual se ajusta mejor a los requerimientos del proyecto. Por ejemplo, una de las exigencias mas relevantes de la plataforma, según los objetivos secundarios planteados en \ref{sec:ObjetivosSec}, es contar con un base de datos propia que contenga todo el repertorio nacional, incluyendo además, las obras realizadas por artistas independientes, con tal de mantener toda esta información de manera local, ya sea para evitar desfases de tiempo, o cualquier otro tipo de inconveniente, a la hora de ingresar nuevas canciones a la plataforma.
 
-En la tabla \ref{tab:CuadroComparativoApis} se señalan las características fundamentales de cada sistema evaluado. De esta colección de herramientas, se ha optado por implementar Dejavu Project, puesto que es la única que establece una conexión local a la hora de analizar y trabajar con los fingerprints, al permitir crear una base de datos propia. De esta forma, el tiempo de búsqueda de coincidencias entre canciones se reduce en comparación a los otros sistemas, si se considera que estos últimos requieren realizar solicitudes a fuentes externas, que no necesariamente estarán actualizadas con los últimos estrenos musicales del país.
+En la tabla \ref{tab:} se señalan las características fundamentales de cada sistema evaluado. De esta colección de herramientas, se ha optado por implementar Dejavu Project, puesto que es la única que establece una conexión local a la hora de analizar y trabajar con los fingerprints. al permitir crear una base de datos propia. De esta forma, el tiempo de búsqueda de coincidencias entre canciones se reduce en comparación a los otros sistemas, si se considera que estos últimos requieren realizar solicitudes a fuentes externas, que no necesariamente estarán actualizadas con los últimos estrenos musicales del país.
 
 \FloatBarrier
 \begin{table}[h!]
@@ -46,7 +46,7 @@ Como se ha señalado en secciones anteriores, el proyecto Dejavu es un sistema o
 
 
 
-El primer concepto a interiorizar es la aplicación de la Transformada Rápida de Fourier (FFT de sus siglas en inglés: Fast Fourier transform) para el procesamiento digital de señales. Ésto, debido a que la música es codificada digitalmente como una larga lista numérica. En el caso de un archivo .wav la cantidad de números por canal es del orden de 44100 por segundo, donde los canales corresponden a la secuencia de muestras que un parlante de música puede tocar. Los más habituales son estéreo (2 canales) o mono (un canal). Por tanto, si se contara con una canción promedio de 3 minutos 30 segundos, la cantidad de muestras alcanzaría los:
+El primer concepto a interiorizar es la aplicación de la Transformada Rápida de Fourier (FFT de sus siglas en inglés: Fast Fourier transform) para el procesamiento digital de señales. Esto debido a que la música es codificada digitalmente como una larga lista numérica. En el caso de un archivo .wav la cantidad de números por canal es del orden de 44100 por segundo, donde los canales corresponden a la secuencia de muestras que un parlante de música puede tocar. Los más habituales son estéreo (2 canales) o mono (un canal). Por tanto, si se contara con una canción promedio de 3 minutos 30 segundos, la cantidad de muestras alcanzaría los:
 
 \begin{equation*}
 210 [s]* 44100 \, \bigg[ \frac{muestras}{s} \bigg] *2 \, [canales] = 18.522.000
@@ -146,7 +146,7 @@ Y para finalizar, existe \textbf{recognize.py}, que como se mencionó en párraf
 \subsubsection{Análisis de funcionalidad}
 Una vez escogido el algoritmo de reconocimiento acústico, se procede a realizar pruebas a su funcionamiento, para determinar el comportamiento frente a diversos escenarios que requieren un rendimiento adecuado por parte del programa, de modo de identificar correctamente las canciones.
 
-De esta forma, para evaluar el rendimiento de Dejavu, se han escogido dos circunstancias, que podrían provocar un rendimiento ineficaz por parte del algoritmo. Asimismo, tomando en consideración los atributos del programa mencionados en la sección anterior, se determinará su comportamiento, analizando variables como tiempos de creación de fingerprints y tamaño de la base de datos, además de tiempo de respuesta, aciertos y confianza de las salidas del algoritmo, para determinar la mejor configuración del mismo.
+De esta forma, para evaluar el rendimiento de Dejavu, se han escogido dos circunstancias, que podrían provocar un rendimiento ineficaz por parte del algoritmo. Asimismo, tomando en consideración los atributos del programa mencionados en la sección anterior, se determinará su comportamiento, analizando variables como tiempos de creación de fingerprints y tamaño de la base de datos, además de tiempo de respuesta, aciertos y CONFIDENCIA de las salidas del algoritmo, para determinar la mejor configuración del mismo.
 
 Cabe mencionar, que las características del equipo utilizado para realizar las pruebas mencionadas, se detallan en \ref{sec:CaracDelEquipo}.
 
@@ -258,8 +258,9 @@ De acuerdo a la metodología implementada, tras escoger y configurar el algoritm
 
 \begin{algorithm}
 \begin{algorithmic}[1]
-\REQUIRE \textit{urlRadio, delay, fechaLimite, nombreRadio, segundosExtracto.}
+\REQUIRE \textit{urlRadio, nombreRadio, segundosExtracto, fechaLimite, delay.}
 \ENSURE archivo de texto plano.
+\STATE craerArchivoSalida(nombreRadio)
 \WHILE {(tiempo actual $<$ \textit{fechaLimite})}
 \STATE Acceder a \textit{urlRadio} del streaming
 \STATE Transformar señal continua de música en discreta creando extractos de \textit{segundosExtracto} 
@@ -283,56 +284,95 @@ El detalle de las variables de entrada del programa se presenta a continuación:
 
 \begin{itemize}
 \item \textit{urlRadio}: cadena que almacena el link del streaming de la radio que se controla.
-\item \textit{delay}: variable entera definida en segundos, que indica cada cuanto tiempo se están creando extractos de música desde la radio, para transformar la señal continua en discreta, y hacer uso de Dejavu para su reconocimiento.
-
+\item \textit{nombreRadio}: variable que identifica por un nombre corto la radio que se analiza, y cuyo valor será utilizado para nombrar el archivo de salida.
+\item \textit{segundosExtracto}: variable entera que indica la duración que tendrán los extractos de música creados desde el streaming.
 \item \textit{fechaLimite}: variable tipo fecha que puede ser definida de dos formas.
-
 \begin{itemize}
 \item fechaLimite en minutos: esta variable contabiliza el tiempo desde que se corre el programa hasta que transcurran los minutos definidos por el usuario.
 \item fechaLimite como día: el programa se ejecuta hasta el día, hora, minutos y segundos, que se le definieron.
 \end{itemize}
-
-\item \textit{nombreRadio}: variable que identifica por un nombre corto la radio que se analiza, y cuyo valor será utilizado para nombrar el archivo de salida.
-
-\item \textit{segundosExtracto}: variable entera que indica la duración que tendrán los extractos de música creados desde el streaming.
-
+\item \textit{delay}: variable entera definida en segundos, que indica cada cuanto tiempo se están creando extractos de música desde la radio, para transformar la señal continua en discreta, y hacer uso de Dejavu para su reconocimiento.
 \end{itemize}
 
-Cabe mencionar que la salida del programa corresponde a un archivo de texto que enlista el nombre de las canciones, con sus respectivos tiempos cronológicos de emisión.
+Cabe mencionar que la salida del programa corresponde a un archivo de texto, el cual es creado a partir del método \textit{craerArchivoSalida(nombreRadio)}. Éste contiene el listado del nombre de las canciones, con sus respectivos tiempos cronológicos de emisió., 
 
-Para el ciclo iterativo se desarrolló una función nombrada \textit{Repetir}, la que se llama a sí misma cada cierto tiempo definido por la variable \textit{delay}. \textit{Repetir}, a su vez, llama a la función \textit{GenerarExtracto}, pero en un nuevo hilo de ejecución. De esta forma, independiente que el algoritmo tarde mucho en reconocer alguna canción, seguirán creándose extractos según los segundos definidos, sin necesidad de esperar la respuesta de Dejavu para seguir con la ejecución del programa.
+Para el ciclo iterativo (líneas 2 a 7) se desarrolló una función nombrada \textit{fiscalizar}, la que se llama a sí misma cada cierto tiempo definido por la variable \textit{delay}, hasta que se ha alcanzado el tiempo de fiscalización indicado por \textit{fechaLimite}. La función \textit{fiscalizar}, a su vez, llama a la función \textit{generarExtracto}, pero en un nuevo hilo de ejecución. De esta forma, independiente que el algoritmo tarde mucho en reconocer alguna canción, seguirán creándose extractos según los segundos definidos, sin necesidad de esperar la respuesta de Dejavu para seguir con la ejecución del programa.
 
 
-\textit{GenerarExtracto} por su parte, corresponde a la función con más líneas de código, debido a que agrupa las tareas fundamentales del programa. El próximo seudocódigo especifica su labor.
+\textit{generarExtracto} por su parte, corresponde a la función con más líneas de código, debido a que agrupa las tareas fundamentales del programa. El próximo seudocódigo especifica su labor.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
-\REQUIRE \textit{urlRadio, delay, fechaLimite, nombreRadio, segundosExtracto.}
-
+\REQUIRE \textit{urlRadio, nombreRadio, segundosExtracto, fechaLimite, delay.}
 \STATE Determinar \textit{nombreArchivo} del extracto de música de extensión .mp3 que se creará desde el streaming
+\STATE Conexión streaming \textit{urlRadio}
 \WHILE {(segundos transcurridos $<$ \textit{segundosExtracto*2})}
-\STATE Generar extracto de música desde streaming
+\STATE crear extracto \textit{nombreArchivo}.mp3
 \ENDWHILE 
-\STATE CortarCancion(\textit{nombreArchivo, segundosExtracto})
-\STATE cancion $=$ dejavu.recognize(\textit{FileRecognizer, nombreArchivo})
-\PRINT en documento de fiscalización el nombre de la canción reconocida, fecha en que sonaba, y tiempo de respuesta de dejavu.
+\STATE \textit{cortarCancion(nombreArchivo, segundosExtracto)}
+\STATE cancion $=$ dejavu.recognize(\textit{nombreArchivo})
+\STATE \textit{contenidoFila} = generar cadena texto para imprimir en archivo de salida, incluyendo nombre de la canción reconocida, fecha en que sonaba, y tiempo de respuesta de dejavu
+\STATE \textit{actualizarArchivoSalida(contenidoFila)}
 
 \end{algorithmic}
-\caption{GenerarExtracto}\label{alg:GenerarExtracto}
+\caption{generarExtracto}\label{alg:GenerarExtracto}
 \end{algorithm}
 
 
 
-Con respecto a la segunda línea de código del Algoritmo \ref{alg:GenerarExtracto} es importante destacar que el valor de la variable \textit{segundosExtracto} es duplicado, debido a que la duración real de la extracción de audio desde el streaming, varía en función de la memoria, tiempo de respuesta del servidor del streaming, etc, por lo que en caso de no aumentar su extensión, estos archivos serán más cortos que el tiempo requerido. Por tanto, \textit{CortarCancion} de la línea de código 5 es una función que se encarga de modificar la duración del archivo de música descargado, según los parámetros definidos por el usuario.
+Con respecto a la tercera línea de código del Algoritmo \ref{alg:GenerarExtracto} es importante destacar que el valor de la variable \textit{segundosExtracto} es duplicado, debido a que la duración real de la extracción de audio desde el streaming, varía en función de la memoria, tiempo de respuesta del servidor del streaming, etc, por lo que en caso de no aumentar su extensión, estos archivos serán más cortos que el tiempo requerido. Por tanto, \textit{cortarCancion} de la línea de código 6 es una función que se encarga de modificar la duración del archivo de música descargado, según los parámetros definidos por el usuario.
 
-Como se especifica en la primera línea de código, se crean archivos de audio de extensión .mp3 que contienen los extractos de música obtenidos desde la url del streaming de la radio, debido a que es el tipo de archivo que requiere como parámetro la función de reconocimiento acústico de Dejavu, y por ello, se hace indispensable transformar la señal continua de música en pequeños extractos. A su vez, el nombre de estos archivos contienen información sobre la fecha en la que fueron creados, por lo que será posible realizar una planilla que contenga la parilla musical de la radio fiscalizada, una vez el extracto de música sea reconocido por el algoritmo. Así, en la línea 6 del código, se define la variable \textit{cancion} que almacena la respuesta de Dejavu en formato de diccionario. 
+Como se especifica en la cuarta línea de código, se crean archivos de audio de extensión .mp3 que contienen los extractos de música obtenidos desde la url del streaming de la radio, debido a que es el tipo de archivo que requiere como parámetro la función de reconocimiento acústico de Dejavu, y por ello, se hace indispensable transformar la señal continua de música en pequeños extractos. A su vez, el nombre de estos archivos contienen información sobre la fecha en la que fueron creados, por lo que será posible realizar una planilla que contenga la parilla musical de la radio fiscalizada, una vez el extracto de música sea reconocido por el algoritmo. Así, en la línea 7 del código, se define la variable \textit{cancion} que almacena la respuesta de Dejavu en formato de diccionario. 
 
-Como resultado, se crea una cadena con todos estos datos, y se imprime en una archivo de texto plano para generar la planilla de la radio, y de esta forma, se registra la música que estaba sonando en un determinado instante. Se debe mencionar, además, que la respuesta de Dejavu puede conducir a tres situaciones. En primera instancia, la música será reconocida, y dicha información será agregada a la planilla, sin embargo, en caso en que el diccionario \textit{cancion} esté vació por no haber coincidencia de fingerprints, o el extracto de música no sobrepasa un umbral de frecuencia y genera un audio vacío, ambas respuestas son claramente señaladas en el archivo de salida, con los respectivos tiempos en que las situaciones recién mencionadas ocurrieron.
+Como resultado, se crea una cadena con todos estos datos, y mediante el método \textit{actualizarArchivoSalida} se imprime en una archivo de texto plano para generar la planilla de la radio, y de esta forma, se registra la música que estaba sonando en un determinado momento. Se debe mencionar, además, que la respuesta de Dejavu puede conducir a tres situaciones. En primera instancia, la música será reconocida, y dicha información será agregada a la planilla, sin embargo, en caso en que el diccionario \textit{cancion} esté vació por no haber coincidencia de fingerprints, o el extracto de música no sobrepasa un umbral de frecuencia y genera un audio vacío, ambas respuestas son claramente señaladas en el archivo de salida, con los respectivos tiempos en que las situaciones recién mencionadas ocurrieron.
 
 
 \subsection{Fiscalización paralela}
-La última etapa del proyecto consistió en 
+La última etapa del proyecto consiste en probar el algoritmo anterior, modificando los aspectos necesarios para lograr fiscalizar múltiples radioemisoras online a la vez. Cabe destacar que, debido a la forma y estructura en que fue desarrollado el algoritmo anterior, fue sencillo modificar el método \textit{fiscalizar} para generar mayor cantidad de hilos de ejecución y cumplir con el análisis paralelo de las radios.
 
+A continuación se presenta el nuevo algoritmo, indicando las funciones agregadas al desarrollo anterior.
+
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+\REQUIRE \textit{archivoEntrada, segundosExtracto, fechaLimite, delay.}
+\ENSURE archivos de texto plano con parilla musical.
+\STATE listaNombreRadios, listaUrlRadios = \textit{obtenerRadios(archivoEntrada)}
+\STATE \textit{crearArchivoSalida(listaNombreRadios)}
+\STATE \textit{fiscalizar(listaUrlRadios, listaNombreRadios, segundosExtracto, fechaLimite, delay)}
+
+\end{algorithmic}
+\caption{Fiscalización paralela}\label{alg:fiscalizarParalelo}
+\end{algorithm}
+
+La primera diferencia es el método \textit{obtenerRadios} el cual se encarga de leer un archivo de entrada de texto plano que contiene el nombre corto de una determinada radioemisora, con su respectiva dirección de streaming. De esta forma, se generan las listas \textit{listaNombreRadios} y \textit{listaUrlRadios}.
+
+Como se mencionó con anterioridad, la función fiscalizar, encargada de generar los extractos y reconocer la música, también fue ligeramente modificada para lograr revisar simultáneamente en varias estaciones de radio online, tal cual lo señala el algoritmo \ref{alg:fiscalizar}.
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+\REQUIRE \textit{listaUrlRadios, listaNombreRadios, segundosExtracto, fechaLimite, delay.}
+\IF {(tiempo actual $<$ \textit{fechaLimite})}
+\STATE \textit{inicio} = definir tiempo de inicio
+\FOR {(urlRadio \textbf{en} listaUrlRadios)}
+\STATE \textit{generarExtracto(urlRadio, nombreRadio, segundosExtracto, fechaLimite, delay)}
+\ENDFOR
+\STATE \textit{final} = definir tiempo de finalización
+\STATE \textit{delayReal} = \textit{delay} - (\textit{final} - \textit{inicio})
+\STATE \textit{fiscalizar(listaUrlRadios, listaNombreRadios, segundosExtracto, fechaLimite, delayReal)}
+\ELSE
+\STATE Detener ejecución
+\ENDIF
+
+\end{algorithmic}
+\caption{fiscalizar}\label{alg:fiscalizar}
+\end{algorithm}
+ 
+De las líneas 3 y 4 del algoritmo \ref{alg:fiscalizar}, se desprende que se generan múltiples llamadas al método \textit{generarExtracto} el cual, al estar dentro de un loop, se encarga de revisar cada radio disponible en el listado \textit{listaUrlRadios}, de tal forma, de crear archivos de música para su posterior identificación, tal como se señala en el método \ref{alg:GenerarExtracto} \textit{generarExtracto} ya definido.
+
+A su vez, el método \textit{fiscalizar} se llama a si mismo una vez a pasado el tiempo de espera definido por \textit{delayReal}. Se ha incluido el cálculo de esta variable debido a que si la generación de múltiples hilos en la ejecución del loop provoca cierto retraso, el tiempo entre el extracto n-ésimo y extracto n+1 de una misma radio, mantendrá el \textit{delay} original definido, sin considerar el tiempo utilizado para la generación de extractos de las otras radios.
+
+Para finalizar, se debe recordar que la función \textit{actualizarArchivoSalida} del algoritmo \label{alg:GenerarExtracto} es la encargada de imprimir en un archivo de texto el listado de las canciones reconocidas con dejavu, con sus respectivos tiempos, de tal forma de generar automáticamente múltiples archivos con la parilla musical del listado de radios online.
 
 
 
